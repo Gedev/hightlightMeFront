@@ -12,6 +12,8 @@ import {RouterOutlet} from "@angular/router";
 import { AppRoutingModule } from './app-routing.module';
 import {MatInputModule} from "@angular/material/input";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatTableModule} from "@angular/material/table";
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -29,7 +31,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     RouterOutlet,
     AppRoutingModule,
     MatInputModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatTableModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]
