@@ -11,13 +11,14 @@ export class HomepageComponent {
   title = 'Highlight Me';
   text: string | undefined;
   protected readonly onsubmit = onsubmit;
-
+  response: any;
   constructor(private http: HttpClient) { }
 
   onSubmit(form: NgForm) {
     console.log("Submit!")
-    this.http.post('http://localhost:8000/api/', { text: this.text }).subscribe(response => {
-      console.log(response);
+    console.log(form)
+    this.http.post('http://localhost:8000/api/', form.value).subscribe(data=> {
+      this.response = data;
     });
   }
 }
