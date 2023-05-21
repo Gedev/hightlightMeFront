@@ -7,13 +7,13 @@ import {HttpClient} from "@angular/common/http";
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  text: string | undefined;
+  wl_report_code: string | undefined;
   protected readonly onsubmit = onsubmit;
 
   constructor(private http: HttpClient) { }
 
   submitForm() {
-    this.http.post('http://localhost:8000/api/', { text: this.text }).subscribe(response => {
+    this.http.post('http://localhost:8000/api/', { wl_report_code: this.wl_report_code }).subscribe(response => {
       console.log(response);
     });
   }

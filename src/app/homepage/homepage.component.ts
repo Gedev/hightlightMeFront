@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {NgForm} from "@angular/forms";
+import {PlayerData} from "../models/playerData";
 
 @Component({
   selector: 'app-homepage',
@@ -13,7 +14,6 @@ export class HomepageComponent {
   protected readonly onsubmit = onsubmit;
   response: any;
 
-
   constructor(private http: HttpClient) { }
 
   onSubmit(form: NgForm) {
@@ -22,4 +22,6 @@ export class HomepageComponent {
       this.response = data;
     });
   }
+
+  protected readonly Object = Object;
 }
