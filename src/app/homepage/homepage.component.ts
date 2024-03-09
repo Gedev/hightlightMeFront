@@ -18,7 +18,7 @@ export class HomepageComponent {
 
   onSubmit(form: NgForm) {
     console.log("Submit!")
-    this.http.post('http://localhost:8000/api/', form.value).subscribe(data=> {
+    this.http.post('https://highlightmebackend-production.up.railway.app/api/', form.value).subscribe(data=> {
       this.response = data;
     });
   }
