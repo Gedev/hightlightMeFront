@@ -8,7 +8,7 @@
 </div>
 
 <div class="content" role="main">
-  <span>Exemple de code : FR4pHbB8XktYqGzZ</span>
+  <span>Exemple de code : ZQdNmfwyWPgkAYF9</span>
   <form #myform="ngForm" (ngSubmit)="onSubmit(myform)" id="wlcodeinput">
     <mat-form-field>
       <input ngModel name="wl_report_code" matInput placeholder="WarcraftLogs Code" required>
@@ -25,69 +25,9 @@
 
   <ng-template #hasData>
 
-    <!--    <pre>{{ response.data.reportData.report.playerDetails.data.playerDetails.tanks | json }}</pre>-->
-    <!--    <table class="table table-striped">-->
-    <!--      <thead>-->
-    <!--        <tr>-->
-    <!--          <th></th>-->
-    <!--          <th scope="col">Name</th>-->
-    <!--          <th scope="col">ID</th>-->
-    <!--          <th scope="col">GUID</th>-->
-    <!--          <th scope="col">Type</th>-->
-    <!--          <th scope="col">Server</th>-->
-    <!--          <th scope="col">Icon</th>-->
-    <!--          <th scope="col">Min Item Level</th>-->
-    <!--          <th scope="col">Max Item Level</th>-->
-    <!--          <th scope="col">Potion Use</th>-->
-    <!--          <th scope="col">Healthstone Use</th>-->
-    <!--        </tr>-->
-    <!--      </thead>-->
-    <!--      <tbody>-->
-    <!--      <tr *ngFor="let tank of response.data.reportData.report.playerDetails.data.playerDetails.tanks">-->
-    <!--        <img width="40" alt="Warcraft Logo" src="../../assets/img/Tank_role.png">-->
-    <!--        <td>{{ tank.name }}</td>-->
-    <!--        <td>{{ tank.id }}</td>-->
-    <!--        <td>{{ tank.guid }}</td>-->
-    <!--        <td>{{ tank.type }}</td>-->
-    <!--        <td>{{ tank.server }}</td>-->
-    <!--        <td>{{ tank.icon }}</td>-->
-    <!--        <td>{{ tank.minItemLevel }}</td>-->
-    <!--        <td>{{ tank.maxItemLevel }}</td>-->
-    <!--        <td>{{ tank.potionUse }}</td>-->
-    <!--        <td>{{ tank.healthstoneUse }}</td>-->
-    <!--      </tr>-->
 
-    <!--      <tr *ngFor="let dps of response.data.reportData.report.playerDetails.data.playerDetails.dps">-->
-    <!--        <img width="40" alt="Warcraft Logo" src="assets/img/DPS-role.png">-->
-    <!--        <td>{{ dps.name }}</td>-->
-    <!--        <td>{{ dps.id }}</td>-->
-    <!--        <td>{{ dps.guid }}</td>-->
-    <!--        <td>{{ dps.type }}</td>-->
-    <!--        <td>{{ dps.server }}</td>-->
-    <!--        <td>{{ dps.icon }}</td>-->
-    <!--        <td>{{ dps.minItemLevel }}</td>-->
-    <!--        <td>{{ dps.maxItemLevel }}</td>-->
-    <!--        <td>{{ dps.potionUse }}</td>-->
-    <!--        <td>{{ dps.healthstoneUse }}</td>-->
-    <!--      </tr>-->
 
-    <!--      <tr *ngFor="let heals of response.data.reportData.report.playerDetails.data.playerDetails.healers">-->
-    <!--        <img width="40" alt="Warcraft Logo" src="assets/img/Healer-role.png">-->
-    <!--        <td>{{ heals.name }}</td>-->
-    <!--        <td>{{ heals.id }}</td>-->
-    <!--        <td>{{ heals.guid }}</td>-->
-    <!--        <td>{{ heals.type }}</td>-->
-    <!--        <td>{{ heals.server }}</td>-->
-    <!--        <td>{{ heals.icon }}</td>-->
-    <!--        <td>{{ heals.minItemLevel }}</td>-->
-    <!--        <td>{{ heals.maxItemLevel }}</td>-->
-    <!--        <td>{{ heals.potionUse }}</td>-->
-    <!--        <td>{{ heals.healthstoneUse }}</td>-->
-    <!--      </tr>-->
-    <!--      </tbody>-->
-    <!--    </table>-->
-
-    <h3>
+    <h3 class="justify-content-center">
       {{ response.data.reportData.report.title | json }}
     </h3>
 
@@ -98,19 +38,102 @@
           <div class="card-body">
             <h5 class="card-title">
               <h3>
-                  {{ response.data.reportData.report.title | json }}
+                <div *ngFor="let key of Object.keys(response.maxupgrade)">
+                  <p>{{ response.maxupgrade[key].name }} a pris {{ response.maxupgrade[key].difference }}ilvl durant le raid !</p>
+                </div>
               </h3>
             </h5>
             <div class="card-text">
               <div *ngFor="let key of Object.keys(response.maxupgrade)">
-                <p>{{ response.maxupgrade[key].name }} a pris {{ response.maxupgrade[key].difference }}ilvl durant le raid !</p>
                 <p>"{{ response.maxupgrade[key].humoristic_sentence }}"</p>
               </div>
             </div>
           </div>
         </div>
       </div>
+      <div class="col-md-4">
+
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">
+              <h3>
+                <div *ngFor="let key of Object.keys(response.playerWithMaxHsUsed)">
+                  <p>{{ response.playerWithMaxHsUsed[key].name }} a consommé {{ response.playerWithMaxHsUsed[key].max_healthStones_used }} pierres de soin durant le raid !</p>
+                </div>
+              </h3>
+            </h5>
+            <div class="card-text">
+              <div *ngFor="let key of Object.keys(response.playerWithMaxHsUsed)">
+                <p>"{{ response.playerWithMaxHsUsed[key].humoristic_sentence }}"</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+
+
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th></th>
+        <th scope="col">Name</th>
+        <th scope="col">ID</th>
+        <th scope="col">GUID</th>
+        <th scope="col">Type</th>
+        <th scope="col">Server</th>
+        <th scope="col">Icon</th>
+        <th scope="col">Min Item Level</th>
+        <th scope="col">Max Item Level</th>
+        <th scope="col">Potion Use</th>
+        <th scope="col">Healthstone Use</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let tank of response.data.reportData.report.playerDetails.data.playerDetails.tanks">
+        <img width="40" alt="Warcraft Logo" src="../../assets/img/Tank_role.png">
+        <td>{{ tank.name }}</td>
+        <td>{{ tank.id }}</td>
+        <td>{{ tank.guid }}</td>
+        <td>{{ tank.type }}</td>
+        <td>{{ tank.server }}</td>
+        <td>{{ tank.icon }}</td>
+        <td>{{ tank.minItemLevel }}</td>
+        <td>{{ tank.maxItemLevel }}</td>
+        <td>{{ tank.potionUse }}</td>
+        <td>{{ tank.healthstoneUse }}</td>
+      </tr>
+
+      <tr *ngFor="let dps of response.data.reportData.report.playerDetails.data.playerDetails.dps">
+        <img width="40" alt="Warcraft Logo" src="assets/img/DPS-role.png">
+        <td>{{ dps.name }}</td>
+        <td>{{ dps.id }}</td>
+        <td>{{ dps.guid }}</td>
+        <td>{{ dps.type }}</td>
+        <td>{{ dps.server }}</td>
+        <td>{{ dps.icon }}</td>
+        <td>{{ dps.minItemLevel }}</td>
+        <td>{{ dps.maxItemLevel }}</td>
+        <td>{{ dps.potionUse }}</td>
+        <td>{{ dps.healthstoneUse }}</td>
+      </tr>
+
+      <tr *ngFor="let heals of response.data.reportData.report.playerDetails.data.playerDetails.healers">
+        <img width="40" alt="Warcraft Logo" src="assets/img/Healer-role.png">
+        <td>{{ heals.name }}</td>
+        <td>{{ heals.id }}</td>
+        <td>{{ heals.guid }}</td>
+        <td>{{ heals.type }}</td>
+        <td>{{ heals.server }}</td>
+        <td>{{ heals.icon }}</td>
+        <td>{{ heals.minItemLevel }}</td>
+        <td>{{ heals.maxItemLevel }}</td>
+        <td>{{ heals.potionUse }}</td>
+        <td>{{ heals.healthstoneUse }}</td>
+      </tr>
+      </tbody>
+    </table>
+    <pre>{{ response.data.reportData.report.playerDetails.data.playerDetails.tanks | json }}</pre>
 
   </ng-template>
 
