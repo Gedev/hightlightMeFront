@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {NgForm} from "@angular/forms";
 import {PlayerData} from "../models/playerData";
+import {environment} from "../../environments/environment";
 
 @Component({
   selector: 'app-homepage',
@@ -18,7 +19,7 @@ export class HomepageComponent {
 
   onSubmit(form: NgForm) {
     console.log("Submit!")
-    this.http.post('https://highlightmebackend-production.up.railway.app/api/', form.value).subscribe(data=> {
+    this.http.post(environment.apiUrl + "/api/", form.value).subscribe(data=> {
       this.response = data;
     });
   }
